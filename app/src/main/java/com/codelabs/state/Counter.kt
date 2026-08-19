@@ -33,10 +33,3 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
         count = counter, onIncrement = { counter++ }, modifier = modifier
     )
 }
-
-
-class WellnessTask(
-    val id: Int, val label: String, initialChecked: Boolean = false
-) {
-    var checked: Boolean by mutableStateOf(initialChecked)
-}
