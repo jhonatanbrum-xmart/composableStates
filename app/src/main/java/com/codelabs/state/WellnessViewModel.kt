@@ -1,22 +1,52 @@
 package com.codelabs.state
 
-import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class WellnessViewModel : ViewModel() {
-    private val _tasks = getWellnessTasks().toMutableStateList()
-    val tasks: List<WellnessTask>
-        get() = _tasks
+    private val _tasks = MutableStateFlow(getWellnessTasks())
+    val tasks: StateFlow<List<WellnessTask>> = _tasks.asStateFlow()
 
-    fun remove(item: WellnessTask) {
-        _tasks.remove(item)
+
+    fun removeTask(item: WellnessTask) {
+        _tasks.update { currentList ->
+            currentList.filter { it.id != item.id }
+        }
     }
 
-    fun changeTaskChecked(item: WellnessTask, checked: Boolean) =
-        tasks.find { it.id == item.id }?.let { task ->
-            task.checked = checked
+    fun addTask(){
+        val newTaskId: Int = _tasks.value.last().id +1
+        val newTask: WellnessTask = WellnessTask(id = newTaskId, label = "Task # $newTaskId")
+        _tasks.value += newTask
+    }
+
+    fun changeTaskChecked(item: WellnessTask) {
+        _tasks.update { currentList ->
+            currentList.map { task ->
+                if (task.id == item.id) {
+                    task.copy(isChecked = !task.isChecked)
+                } else task
+            }
         }
+    }
+
+
+
+    fun onTaskNameChanged(taskId: Int, newName: String) {
+        _tasks.update { currentList ->
+            currentList.map { task ->
+                if (task.id == taskId) {
+                    task.copy(label = newName)
+                } else task
+            }
+        }
+    }
 }
+
+
 
 private fun getWellnessTasks() =
     List(20) { identifier -> WellnessTask(id = identifier, label = "Task # $identifier") }
