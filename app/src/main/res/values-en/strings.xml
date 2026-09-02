@@ -6,4 +6,7 @@
     <string name="counter_text">You`ve had %1$d glasses.</string>
     <string name="button_text">Add one.</string>
     <string name="tasks_text">Task # %1$d</string>
+    <string name="AllTasksFilter_text">All Tasks</string>
+    <string name="NoCheckedTasksFilter_text">No checked</string>
+    <string name="CheckedTasksFilter_text">Checked</string>
 </resources>

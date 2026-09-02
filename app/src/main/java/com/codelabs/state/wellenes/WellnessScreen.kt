@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -42,13 +43,7 @@ fun WellnessScreen(
                     selected = selected,
                     onClick = { wellnessViewModel.setFilter(filterOption) },
                     label = {
-                        Text(
-                            when (filterOption) {
-                                StateOfWellness.all -> "Todas"
-                                StateOfWellness.checkedTasks -> "Marcadas"
-                                StateOfWellness.noCheckedTasks -> "No marcadas"
-                            }
-                        )
+                        Text(stringResource(filterOption.label))
                     },
                     leadingIcon = if (selected) {
                         {
@@ -74,7 +69,7 @@ fun WellnessScreen(
 
 @Preview
 @Composable
-fun MyAppPreview() {
+fun MyWellnessScreenPreview() {
     BasicStateCodelabTheme {
         WellnessScreen()
     }

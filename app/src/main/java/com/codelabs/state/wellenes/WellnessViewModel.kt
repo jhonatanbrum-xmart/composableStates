@@ -15,18 +15,18 @@ import kotlinx.coroutines.flow.update
 class WellnessViewModel : ViewModel() {
     private val _tasks = MutableStateFlow(getWellnessTasks())
 
-    private val _filter = MutableStateFlow(StateOfWellness.all)
+    private val _filter = MutableStateFlow(StateOfWellness.All)
     val filter: StateFlow<StateOfWellness> = _filter.asStateFlow()
 
     val filteredTasks: StateFlow<List<WellnessTask>> = combine(_tasks, _filter) { tasks, filter ->
         when (filter) {
-            StateOfWellness.all -> tasks
-            StateOfWellness.checkedTasks -> tasks.filter { it.isChecked }
-            StateOfWellness.noCheckedTasks -> tasks.filter { !(it.isChecked) }
+            StateOfWellness.All -> tasks
+            StateOfWellness.CheckedTasks -> tasks.filter { it.isChecked }
+            StateOfWellness.NoCheckedTasks -> tasks.filterNot { it.isChecked }
         }
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.Lazily,
         initialValue = _tasks.value
     )
 
