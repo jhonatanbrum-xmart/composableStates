@@ -11,8 +11,10 @@
   the License.
   -->
 <resources>
-    <string name="app_name">StateCodelab</string>
+    <string name="app_name">CodelabDeEstado</string>
     <string name="works_button">Tareas</string>
-    <string name="water_button">Water glasses</string>
-    <string name="counter_text">You`ve had %1$d glasses.</string>
+    <string name="water_button">Vasos de agua</string>
+    <string name="counter_text">Tu tienes: %1$d vaso de agua.</string>
+    <string name="button_text">Agregar uno</string>
+    <string name="tasks_text">Tarea # 1$d</string>
 </resources>

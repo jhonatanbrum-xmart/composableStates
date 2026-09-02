@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StateCodelab</string>
+    <string name="works_button">Tasks</string>
+    <string name="water_button">Water glasses</string>
+    <string name="counter_text">You`ve had %1$d glasses.</string>
+    <string name="button_text">Add one.</string>
+    <string name="tasks_text">Task # %1$d</string>
+</resources>
