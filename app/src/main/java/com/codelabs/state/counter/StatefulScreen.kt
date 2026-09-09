@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -15,7 +13,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlin.random.Random
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
@@ -35,8 +32,7 @@ fun StatefulScreen(
             key(iconData.id) {
                 AnimateFloatingIcon(
                     iconData = iconData,
-                    onAnimationEnd = { viewModel.removeFloatingIcon(iconData) }
-                )
+                    onAnimationEnd = { viewModel.removeFloatingIcon(iconData) })
             }
         }
         StatelessCounter(

@@ -14,11 +14,11 @@ fun WellnessTasksList(
     onCheckedTask: (WellnessTask, Boolean) -> Unit,
     onCloseTask: (WellnessTask) -> Unit,
     modifier: Modifier = Modifier,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
+    lastCreatedTask: Int?
 ) {
     LazyColumn(
-        state = listState,
-        modifier = modifier
+        state = listState, modifier = modifier
     ) {
         items(
             items = list, key = { task -> task.id }) { task ->
@@ -26,7 +26,9 @@ fun WellnessTasksList(
                 task = task,
                 onNameChange = { newName -> onNameChange(task, newName) },
                 onCheckedChange = { checked -> onCheckedTask(task, checked) },
-                onClose = { onCloseTask(task) })
+                onClose = { onCloseTask(task) },
+                openTheKeyBoard = task.id == lastCreatedTask
+            )
         }
     }
 }

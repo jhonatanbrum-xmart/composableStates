@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import com.codelabs.state.wellenes.WellnessScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             BasicStateCodelabTheme {
                 Surface(
@@ -51,8 +53,7 @@ fun ThemeWindows() {
             onButtonClicked = { isWaterGlassesButtonClicked = it },
             modifier = Modifier.background(color = Color(0xFF694832))
         )
-    }
-    ) { paddingValues ->
+    }) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
             if (isWaterGlassesButtonClicked) {
                 StatefulScreen()

@@ -18,6 +18,10 @@ class WellnessViewModel : ViewModel() {
     private val _filter = MutableStateFlow(StateOfWellness.All)
     val filter: StateFlow<StateOfWellness> = _filter.asStateFlow()
 
+    private val _lastTaskID: MutableStateFlow<Int?> = MutableStateFlow(null)
+
+    val lastTaskID = _lastTaskID.asStateFlow()
+
     val filteredTasks: StateFlow<List<WellnessTask>> = combine(_tasks, _filter) { tasks, filter ->
         when (filter) {
             StateOfWellness.All -> tasks
@@ -25,9 +29,7 @@ class WellnessViewModel : ViewModel() {
             StateOfWellness.NoCheckedTasks -> tasks.filterNot { it.isChecked }
         }
     }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Lazily,
-        initialValue = _tasks.value
+        scope = viewModelScope, started = SharingStarted.Lazily, initialValue = _tasks.value
     )
 
     fun setFilter(newFilter: StateOfWellness) {
@@ -41,8 +43,9 @@ class WellnessViewModel : ViewModel() {
     fun addTask() {
         try {
             val newTaskId: Int = (_tasks.value.lastOrNull()?.id ?: 0) + 1
-            val newTask = WellnessTask(id = newTaskId, label = "Task # $newTaskId")
+            val newTask = WellnessTask(id = newTaskId, label = "")
             _tasks.value += newTask
+            _lastTaskID.value = newTaskId
         } catch (e: Exception) {
             Log.d("tag", "$e")
         }
@@ -57,15 +60,20 @@ class WellnessViewModel : ViewModel() {
         }
     }
 
+    fun notNewTask() {
+        _lastTaskID.value = null
+    }
+
     fun onTaskNameChanged(taskId: Int, newName: String) {
         _tasks.update { currentList ->
             currentList.map { task ->
                 if (task.id == taskId) task.copy(label = newName) else task
             }
         }
+        _lastTaskID.value = null
     }
 }
 
 
 private fun getWellnessTasks() =
-    List(20) { identifier -> WellnessTask(id = identifier, label = "Task # $identifier") }
+    List(0) { identifier -> WellnessTask(id = identifier, label = "") }
