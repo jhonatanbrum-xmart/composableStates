@@ -1,7 +1,9 @@
 package com.codelabs.state.wellenes.wellenesTask
 
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
@@ -11,10 +13,12 @@ fun WellnessTasksList(
     onNameChange: (WellnessTask, String) -> Unit,
     onCheckedTask: (WellnessTask, Boolean) -> Unit,
     onCloseTask: (WellnessTask) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    listState: LazyListState = rememberLazyListState(),
+    lastCreatedTask: Int?
 ) {
     LazyColumn(
-        modifier = modifier
+        state = listState, modifier = modifier
     ) {
         items(
             items = list, key = { task -> task.id }) { task ->
@@ -22,7 +26,9 @@ fun WellnessTasksList(
                 task = task,
                 onNameChange = { newName -> onNameChange(task, newName) },
                 onCheckedChange = { checked -> onCheckedTask(task, checked) },
-                onClose = { onCloseTask(task) })
+                onClose = { onCloseTask(task) },
+                openTheKeyBoard = task.id == lastCreatedTask
+            )
         }
     }
 }
