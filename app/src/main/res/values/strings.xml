@@ -20,4 +20,17 @@
     <string name="AllTasksFilter_text">Todas</string>
     <string name="NoCheckedTasksFilter_text">No chequeadas</string>
     <string name="CheckedTasksFilter_text">Chequeadas</string>
+    <string name="dashboard_button">Dashboard</string>
+    <string name="dashboard_greeting">Hola, %1$s</string>
+    <string name="dashboard_streak">%1$d días seguidos</string>
+    <string name="dashboard_weather">%1$d° · %2$s</string>
+    <string name="dashboard_refresh">Actualizar</string>
+    <string name="dashboard_notifications">Notificaciones</string>
+    <string name="dashboard_unread">%1$d sin leer</string>
+    <string name="dashboard_score">Engagement: %1$d</string>
+    <string name="dashboard_score_loading">Engagement: calculando…</string>
+    <string name="dashboard_filter_all">Todas</string>
+    <string name="dashboard_filter_unread">Sin leer</string>
+    <string name="dashboard_filter_read">Leídas</string>
+    <string name="dashboard_empty">No hay notificaciones para mostrar</string>
 </resources>

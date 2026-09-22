@@ -2,7 +2,7 @@ package com.codelabs.state.counter
 
 import java.util.UUID
 
-class FloatingIcon(
+data class FloatingIcon(
     val id: UUID = UUID.randomUUID(),
     val initialX: Float,
     val initialY: Float,

@@ -1,7 +1,6 @@
 package com.codelabs.state
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.codelabs.state.counter.StatefulScreen
+import com.codelabs.state.dashboard.DashboardScreen
 import com.codelabs.state.ui.theme.BasicStateCodelabTheme
 import com.codelabs.state.wellenes.WellnessScreen
 
@@ -34,10 +34,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     ThemeWindows()
-                    try {
-                    } catch (e: Exception) {
-                        Log.d("tag", "$e")
-                    }
                 }
             }
         }
@@ -46,21 +42,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ThemeWindows() {
-    var isWaterGlassesButtonClicked by rememberSaveable { mutableStateOf(false) }
+    var selectedTab by rememberSaveable { mutableStateOf(AppTab.Tasks) }
     Scaffold(containerColor = MaterialTheme.colorScheme.background, bottomBar = {
         SootheNavigationRail(
-            IsWaterGlassesButtonClicked = true,
-            onButtonClicked = { isWaterGlassesButtonClicked = it },
+            selectedTab = selectedTab,
+            onTabSelected = { selectedTab = it },
             modifier = Modifier.background(color = Color(0xFF694832))
         )
     }) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
-            if (isWaterGlassesButtonClicked) {
-                StatefulScreen()
-            } else {
-                WellnessScreen()
+            when (selectedTab) {
+                AppTab.Tasks -> WellnessScreen()
+                AppTab.Water -> StatefulScreen()
+                AppTab.Dashboard -> DashboardScreen()
             }
-
         }
     }
 }
