@@ -76,4 +76,4 @@ class WellnessViewModel : ViewModel() {
 
 
 private fun getWellnessTasks() =
-    List(0) { identifier -> WellnessTask(id = identifier, label = "") }
+    List(1000) { identifier -> WellnessTask(id = identifier, label = "") }

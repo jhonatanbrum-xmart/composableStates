@@ -33,15 +33,21 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.codelabs.state.R
+import com.codelabs.state.dashboard.solucion.DashboardViewModelSolucion
 
 /**
  * La UI del ejercicio ya esta hecha: no hay nada para tocar aca.
  * Todo lo que falta vive en [DashboardViewModel].
+ *
+ * ESTE ES EL UNICO INTERRUPTOR DEL EJERCICIO:
+ *  - DashboardViewModelSolucion -> la pantalla anda (solucion de referencia)
+ *  - DashboardViewModel         -> punto de partida del ejercicio (loading eterno)
+ * Cambiar el tipo del parametro de abajo y listo, el resto compila igual.
  */
 @Composable
 fun DashboardScreen(
     modifier: Modifier = Modifier,
-    viewModel: DashboardViewModel = viewModel(),
+    viewModel: DashboardViewModelSolucion = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 

@@ -17,6 +17,13 @@ que nunca termina. **Ese es el punto de partida correcto**, no un bug.
 
 Todo el ejercicio pasa en `DashboardViewModel.kt`.
 
+### La solución
+
+Está en `solucion/DashboardViewModelSolucion.kt`, comentada punto por punto.
+**No la mires antes de intentarlo.** No la usa nadie: la pantalla sigue apuntando a
+`DashboardViewModel`. Y no es *la* solución, es *una*: varios puntos tienen más de una
+salida válida.
+
 ### Los repos que tenés a mano
 
 | Llamada | Tarda | Devuelve |
