@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.codelabs.state.catalog.ui.CatalogScreen
 import com.codelabs.state.counter.StatefulScreen
 import com.codelabs.state.dashboard.DashboardScreen
 import com.codelabs.state.ui.theme.BasicStateCodelabTheme
@@ -55,6 +56,7 @@ fun ThemeWindows() {
                 AppTab.Tasks -> WellnessScreen()
                 AppTab.Water -> StatefulScreen()
                 AppTab.Dashboard -> DashboardScreen()
+                AppTab.Catalog -> CatalogScreen()
             }
         }
     }

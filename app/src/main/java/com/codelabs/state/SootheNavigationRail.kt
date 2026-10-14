@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
@@ -21,6 +22,7 @@ enum class AppTab(val labelRes: Int, val icon: ImageVector) {
     Tasks(R.string.works_button, Icons.Default.DateRange),
     Water(R.string.water_button, Icons.Default.AddCircle),
     Dashboard(R.string.dashboard_button, Icons.Default.Home),
+    Catalog(R.string.catalog_button, Icons.AutoMirrored.Filled.List),
 }
 
 @Composable
